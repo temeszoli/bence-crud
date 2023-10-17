@@ -1,0 +1,12 @@
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+body {
+    min-height: 100vh;
+}
+
+.app{
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
