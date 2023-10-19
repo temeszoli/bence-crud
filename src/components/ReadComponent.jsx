@@ -17,11 +17,25 @@ export default function ReadComponent(){
         fetchdata(); 
     }, []);
 
-    function handleClick(e){
-        e.preventDefault();
+    function handleClick(){
 
         var readHTML = '';
-        peopleData.forEach(element => {
+        var tableData = document.getElementById('peopleDataTable');
+        for (let i = 0; i < peopleData.length; i++) {
+            
+            readHTML += `
+            <tr>
+                <td>${peopleData[i].id}</td>
+                <td>${peopleData[i].name}</td>
+                <td>${peopleData[i].email}</td>
+                <td>${peopleData[i].phone}</td>
+                <td>${peopleData[i].birth_date}</td>
+                <td>${peopleData[i].birth_date?'igen':'nem'}</td>
+                <td><a href='/update'>Update</a></td>
+                <td><Button variant="danger" onclick={}>X</Button></td>
+            </tr>`;
+        }
+        /*peopleData.forEach(element => {
             readHTML += `
             <tr>
                 <td>${element.id}</td>
@@ -31,9 +45,9 @@ export default function ReadComponent(){
                 <td>${element.birth_date}</td>
                 <td>${element.birth_date?'igen':'nem'}</td>
                 <td><a href='/update'>Update</a></td>
-                <td>${<Button variant="danger">X</Button>}</td>
+                <td><Button variant="danger" onclick={console.log(${element.id})}>X</Button></td>
             </tr>`;
-        });
+        });*/
         
         document.getElementById('peopleDataTable').innerHTML = readHTML;
     }
