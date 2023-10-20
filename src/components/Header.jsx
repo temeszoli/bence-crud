@@ -11,15 +11,10 @@ export default function Header(){
                         <Nav className="me-auto">
                             <Nav.Link href='/create'>Create</Nav.Link>
                             <Nav.Link href='/read'>Read</Nav.Link>
-                            <Nav.Link href='/update'>Update</Nav.Link>
-                            <Nav.Link href='/delete'>Delete</Nav.Link>
+                            <Nav.Link href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>CE</Nav.Link>
                         </Nav>
                     </Container>
-                </Navbar>
-                    {/*<NavLink to='/create'>Create</NavLink>
-                    <NavLink to='/read'>Read</NavLink>
-                    <NavLink to='/update'>Update</NavLink>
-                    <NavLink to='/delete'>Delete</NavLink>*/}         
+                </Navbar>    
            </> 
     );
 }

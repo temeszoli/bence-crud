@@ -13,7 +13,7 @@ export default function Footer(){
                     <a href="mailto:temeszoli18@gmail.com"><AiOutlineMail /></a>{' '}
                     <Link to='https://www.linkedin.com/in/zoltán-temesvári-9635231a7/'><GrLinkedin /></Link>
                 </h1>
-                <p className='pt-2 mb-0'>Készítette: Temesvári Zoltán</p>
+                <p className='pt-2'>Készítette: Temesvári Zoltán</p>
             </div>
         </footer>
     );

@@ -4,7 +4,6 @@ import HomeComponent from './components/HomeComponent'
 import CreateComponent from './components/CreateComponent'
 import ReadComponent from './components/ReadComponent'
 import UpdateComponent from './components/UpdateComponent'
-import DeleteComponent from './components/DeleteComponent'
 import Footer from './components/Footer'
 
 import './input.scss';
@@ -18,7 +17,6 @@ function App() {
         <Route  path='/read' element={<ReadComponent />}/>
         <Route  path='/create' element={<CreateComponent />}/>
         <Route  path='/update' element={<UpdateComponent />}/>
-        <Route path='/delete' element={<DeleteComponent />}/>
       </Routes>
       <Footer />
     </div>
