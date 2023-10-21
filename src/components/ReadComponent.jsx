@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import ListItem from "./ListItem";
