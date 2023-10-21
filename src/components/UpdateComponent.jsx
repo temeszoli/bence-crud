@@ -1,14 +1,33 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UpdateComponent(){
-    var body = {};
-    const navigate = useNavigate();
+  var body = {};
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const [name, setName] = useState('');
+
+  useEffect(()=>{
+    async function fetchData(){
+      const url = import.meta.env.VITE_BASE_URL;
+      var response = await fetch(url);
+      var responseData = await response.json();
+
+      for (let i = 0; i < responseData.length; i++) {
+        if (responseData[i].id == params.id) {
+          setName(responseData[i].name);
+        }
+      }
+    }
+    fetchData();
+  },[params.id]);
 
     async function fetchPut(){
-        const url = import.meta.env.VITE_BASE_URL+'/hogy szerzem meg ide az id-t';
+        const url = import.meta.env.VITE_BASE_URL+'/'+params.id;
         await fetch(url, {
             method: 'PUT',
             body: body,
@@ -19,40 +38,46 @@ export default function UpdateComponent(){
     }
 
     function onUpdate(event){
-        event.preventDefault();     
-
-        //fetchPut();
-        //navigate('/read');
+        event.preventDefault();
+        body = JSON.stringify({
+          id: params.id,
+          name: event.target.elements.name.value,
+          email: event.target.elements.email.value,
+          phone: event.target.elements.phone.value,
+          birth_date: event.target.elements.birth_date.value,
+          subscribed: event.target.elements[4].checked?true:false,
+        });           
+        fetchPut();
+        navigate('/read');
     }
 
-
     return(
-        <>
-        <h1 className='d-flex justify-content-center mt-3'>Rekord szerkesztése</h1>
-        <Form className='mx-auto mb-5 d-flex flex-column w-25 justify-content-center' onSubmit={onUpdate}>
+        <div className='bg-dark text-white d-flex flex-column' id='forms-container'>
+        <h2 className='mt-3 text-center'>{name} adatainak szerkesztése</h2>
+        <Form className='mx-auto mb-5 d-flex flex-column w-75 justify-content-center' onSubmit={onUpdate}>
         <Form.Group className="mb-3" controlId="formBasicText">
-          <Form.Label>Name:</Form.Label>
-          <Form.Control name='name' type="text" placeholder="Enter your name" />
+          <Form.Label>Név:</Form.Label>
+          <Form.Control name='name' type="text" placeholder="Itt add meg a neved!" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address:</Form.Label>
-          <Form.Control name='email' type="email" placeholder="Enter email" />
+          <Form.Label>Email cím:</Form.Label>
+          <Form.Control name='email' type="email" placeholder="Itt pedig az email címed!" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
-          <Form.Label>Phone Number:</Form.Label>
-          <Form.Control name='phone' type="tel" pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}" required placeholder="e.g. (123) 456-7891" />
+          <Form.Label>Telefonszám:</Form.Label>
+          <Form.Control name='phone' type="tel" pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}" required placeholder="pl. (123) 456-7891" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicBirthDate">
-          <Form.Label>Birth date:</Form.Label>
+          <Form.Label>Születési dátum:</Form.Label>
           <Form.Control name='birth_date' type="datetime-local" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check name='subscribed' type="checkbox" label="Want to subscribe? Check me out!" />
+          <Form.Check name='subscribed' type="checkbox" label="Iratkozz fel egy kattintással!" />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          Változtatások mentése
         </Button>
         </Form>
-        </>
+        </div>
     );
 }

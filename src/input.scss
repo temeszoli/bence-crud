@@ -1,12 +1,25 @@
 @import "./node_modules/bootstrap/scss/bootstrap";
 
+$vertical-margin: 3em;
+$horizontal-margin: 30%;
+
 body {
     min-height: 100vh;
+
+    .app{
+        background-color: #a78d8d;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        
+        #forms-container{
+            margin-top: $vertical-margin;
+            margin-bottom: $vertical-margin;
+            margin-left: $horizontal-margin;
+            margin-right: $horizontal-margin
+        }
+    }
 }
 
-.app{
-    background-color: #a78d8d;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+
+

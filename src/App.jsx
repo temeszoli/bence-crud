@@ -16,7 +16,7 @@ function App() {
         <Route  path='/' element={<HomeComponent />}/>
         <Route  path='/read' element={<ReadComponent />}/>
         <Route  path='/create' element={<CreateComponent />}/>
-        <Route  path='/update' element={<UpdateComponent />}/>
+        <Route  path='/update/:id' element={<UpdateComponent />}/>
       </Routes>
       <Footer />
     </div>

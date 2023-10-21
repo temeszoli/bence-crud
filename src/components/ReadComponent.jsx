@@ -19,12 +19,15 @@ export default function ReadComponent(){
         var peopleObj = await response.json();
         setPeopleData(peopleObj);
         setLastID(peopleObj[peopleObj.length-1].id);
+        <CreateComponent lastID={lastID} data={peopleData}/>;
     }
 
-    <CreateComponent lastID={lastID} data={peopleData}/>
+    const refreshData = async () => {
+        await fetchdata();
+    };
 
     return(
-        <div>
+        <div className="mx-5">
             <Table className="table-dark mt-3" responsive>
                 <thead>
                     <tr>
@@ -38,7 +41,7 @@ export default function ReadComponent(){
                         <th>Törlés</th>
                     </tr>
                 </thead>
-                <ListItem tableData={peopleData} lastID={lastID}/>
+                <ListItem tableData={peopleData} lastID={lastID} refreshData={refreshData}/>
             </Table>
         </div>
     );
