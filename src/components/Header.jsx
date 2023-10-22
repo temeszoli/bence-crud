@@ -7,10 +7,10 @@ export default function Header(){
             <>
                 <Navbar bg="dark" data-bs-theme="dark">
                     <Container>
-                        <Navbar.Brand href="./">Bence CRUD</Navbar.Brand>
+                        <Navbar.Brand href="/">Bence CRUD</Navbar.Brand>
                         <Nav className="me-auto">
-                            <Nav.Link href='./create'>Create</Nav.Link>
-                            <Nav.Link href='./read'>Read</Nav.Link>
+                            <Nav.Link href='/create'>Create</Nav.Link>
+                            <Nav.Link href='/read'>Read</Nav.Link>
                             <Nav.Link href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>CE</Nav.Link>
                         </Nav>
                     </Container>
