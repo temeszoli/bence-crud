@@ -13,7 +13,7 @@ function App() {
     <div className='app'>
       <Header />
       <Routes>
-        <Route  path='/' element={<HomeComponent />}/>
+        <Route  path='/bence-crud' element={<HomeComponent />}/>
         <Route  path='/read' element={<ReadComponent />}/>
         <Route  path='/create' element={<CreateComponent />}/>
         <Route  path='/update/:id' element={<UpdateComponent />}/>
