@@ -8,7 +8,9 @@ export default function Header(){
             <>
                 <Navbar bg="dark" data-bs-theme="dark">
                     <Container>
-                        <Navbar.Brand href="/">Bence CRUD</Navbar.Brand>
+                    <LinkContainer to="/">
+                    <Navbar.Brand>Bence CRUD</Navbar.Brand>
+                    </LinkContainer>
                         <Nav className="me-auto">
                             <LinkContainer to="/create">
                             <Nav.Link>Create</Nav.Link>
