@@ -7,7 +7,7 @@ export default function ListItem({tableData, refreshData }){
     const navigate = useNavigate();
 
     async function handleClickDel(number){
-        var url = import.meta.env.VITE_BASE_URL+'/'+number;
+        const url = import.meta.env.VITE_BASE_URL+'/'+number;
         await fetch(url, {
             method: 'DELETE'
           });
