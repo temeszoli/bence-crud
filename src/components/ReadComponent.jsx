@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import ListItem from "./ListItem";
 import CreateComponent from "./CreateComponent";
+import UpdateComponent from "./UpdateComponent";
 
 export default function ReadComponent(){
 
@@ -22,6 +23,7 @@ export default function ReadComponent(){
             setPeopleData(peopleObj);
             setLastID(peopleObj[peopleObj.length-1].id);
             <CreateComponent lastID={lastID} data={peopleData}/>;
+            <UpdateComponent refreshData={refreshData}/>;
         }else{
             alert('Adatbekérés sikertelen!')
         }

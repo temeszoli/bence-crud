@@ -8,10 +8,16 @@ export default function ListItem({tableData, refreshData }){
 
     async function handleClickDel(number){
         const url = import.meta.env.VITE_BASE_URL+'/'+number;
-        await fetch(url, {
+        const response = await fetch(url, {
             method: 'DELETE'
           });
-          refreshData();
+
+          if(response.status == 200){
+            refreshData();
+          }else{
+            alert('Törlés sikertelen!')
+          }
+          
     }
 
     function handleUpdateClick(item) {

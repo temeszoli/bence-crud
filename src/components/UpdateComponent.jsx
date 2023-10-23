@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserForm from './UserForm';
 
-export default function UpdateComponent(){
+export default function UpdateComponent({refreshData}){
   let body = {};
   const navigate = useNavigate();
   const params = useParams();
@@ -62,6 +62,6 @@ export default function UpdateComponent(){
     }
 
     return(
-        <UserForm title={title} id={params.id} name={name} email={email} phone={phone} subscribed={subscribed} onSubmit={onUpdate}/>
+        <UserForm title={title} id={params.id} name={name} email={email} phone={phone} subscribed={subscribed} onSubmit={onUpdate} refreshData={refreshData}/>
     );
 }
