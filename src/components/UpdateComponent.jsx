@@ -8,7 +8,11 @@ export default function UpdateComponent(){
   const navigate = useNavigate();
   const params = useParams();
 
+  const [title, setTitle] = useState('');
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState(0);
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(()=>{
     async function fetchData(){
@@ -19,8 +23,13 @@ export default function UpdateComponent(){
 
         for (let i = 0; i < responseData.length; i++) {
           if (responseData[i].id == params.id) {
-            setName(responseData[i].name + ' adatainak szerkesztése');
+            setTitle(responseData[i].name + ' adatainak szerkesztése');
+            setName(responseData[i].name);
+            setEmail(responseData[i].email);
+            setPhone(responseData[i].phone);
+            setSubscribed(responseData[i].subscribed)
           }
+
         }
       }else{
         alert('Adatbekérés sikertelen!')
@@ -46,21 +55,13 @@ export default function UpdateComponent(){
         }
     }
 
-    function onUpdate(event){
-        event.preventDefault();
-        body = JSON.stringify({
-          id: params.id,
-          name: event.target.elements.name.value,
-          email: event.target.elements.email.value,
-          phone: event.target.elements.phone.value,
-          birth_date: event.target.elements.birth_date.value,
-          subscribed: event.target.elements[4].checked?true:false,
-        });           
+    function onUpdate(inputData){
+        body = inputData;      
         fetchPut();
         navigate('/read');
     }
 
     return(
-        <UserForm name={name} onSubmit={onUpdate}/>
+        <UserForm title={title} id={params.id} name={name} email={email} phone={phone} subscribed={subscribed} onSubmit={onUpdate}/>
     );
 }

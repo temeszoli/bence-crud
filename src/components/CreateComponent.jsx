@@ -24,23 +24,19 @@ export default function CreateComponent({lastID}){
           }
     }
 
-    function onCreate(event){
-        event.preventDefault();
-        
-        body = JSON.stringify({
-            id: lastID++,
-            name: event.target.elements.name.value,
-            email: event.target.elements.email.value,
-            phone: event.target.elements.phone.value,
-            birth_date: event.target.elements.birth_date.value,
-            subscribed: event.target.elements[4].checked?true:false,
-        })
-
+    function onCreate(inputData){      
+        body = inputData;
         fetchPost();
         navigate('/read');
     }
 
     return(
-        <UserForm name={'Új személy hozzáadása'} onSubmit={onCreate}/> 
+        <UserForm 
+        title={'Új személy hozzáadása'} 
+        id={lastID++} 
+        name={''}
+        email={''}
+        phone={''} 
+        onSubmit={onCreate}/> 
     );
 }
