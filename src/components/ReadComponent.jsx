@@ -22,7 +22,7 @@ export default function ReadComponent(){
             const peopleObj = await response.json();
             setPeopleData(peopleObj);
             setLastID(peopleObj[peopleObj.length-1].id);
-            <CreateComponent lastID={lastID} data={peopleData}/>;
+            <CreateComponent lastID={lastID} data={peopleData} refreshData={refreshData}/>;
             <UpdateComponent refreshData={refreshData}/>;
         }else{
             alert('Adatbekérés sikertelen!')

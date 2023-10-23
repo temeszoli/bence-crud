@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import UserForm from './UserForm';
 
-export default function CreateComponent({lastID}){
+export default function CreateComponent({lastID, refreshData}){
 
     let body = {};
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ export default function CreateComponent({lastID}){
           });
 
           if(response.status == 201){
+            refreshData();
             console.log('Létrehozás sikeres!');
           }else{
             alert('Létrehozás sikertelen!');

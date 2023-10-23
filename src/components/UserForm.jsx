@@ -29,7 +29,7 @@ export default function UserForm({title, id, name, email, phone, subscribed, onS
         subscribed: subscribedRef.current.checked
       });
       onSubmit(body);
-      refreshData();
+      //refreshData();
     }
     
     return(

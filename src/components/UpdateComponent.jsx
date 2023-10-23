@@ -49,6 +49,7 @@ export default function UpdateComponent({refreshData}){
             }
           });
         if (response.status == 200){
+          refreshData();
           console.log('Felhasználó szerkesztése sikeres!');
         }else{
           alert(response.error)
