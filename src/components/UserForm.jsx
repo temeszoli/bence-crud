@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useEffect, useRef } from "react";
 
-export default function UserForm({title, id, name, email, phone, subscribed, onSubmit, refreshData}){
+export default function UserForm({title, id, name, email, phone, subscribed, onSubmit}){
 
     const nameRef = useRef();
     const emailRef = useRef();
