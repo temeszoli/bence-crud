@@ -16,11 +16,15 @@ export default function ReadComponent(){
 
     async function fetchdata(){
         const url = import.meta.env.VITE_BASE_URL;
-        var response = await fetch(url);
-        var peopleObj = await response.json();
-        setPeopleData(peopleObj);
-        setLastID(peopleObj[peopleObj.length-1].id);
-        <CreateComponent lastID={lastID} data={peopleData}/>;
+        const response = await fetch(url);
+        if(response.status == 200){
+            const peopleObj = await response.json();
+            setPeopleData(peopleObj);
+            setLastID(peopleObj[peopleObj.length-1].id);
+            <CreateComponent lastID={lastID} data={peopleData}/>;
+        }else{
+            alert('Adatbekérés sikertelen!')
+        }
     }
 
     const refreshData = async () => {

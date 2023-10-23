@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import UserForm from './UserForm';
 
 export default function UpdateComponent(){
-  var body = {};
+  let body = {};
   const navigate = useNavigate();
   const params = useParams();
 
@@ -13,13 +13,18 @@ export default function UpdateComponent(){
   useEffect(()=>{
     async function fetchData(){
       const url = import.meta.env.VITE_BASE_URL;
-      var response = await fetch(url);
-      var responseData = await response.json();
+      const response = await fetch(url);
+      if (response.status == 200) {
+        const responseData = await response.json();
 
-      for (let i = 0; i < responseData.length; i++) {
-        if (responseData[i].id == params.id) {
-          setName(responseData[i].name + ' adatainak szerkesztése');
+        for (let i = 0; i < responseData.length; i++) {
+          if (responseData[i].id == params.id) {
+            setName(responseData[i].name + ' adatainak szerkesztése');
+          }
         }
+      }else{
+        alert('Adatbekérés sikertelen!')
+        console.log(response.error);
       }
     }
     fetchData();
@@ -27,13 +32,18 @@ export default function UpdateComponent(){
 
     async function fetchPut(){
         const url = import.meta.env.VITE_BASE_URL+'/'+params.id;
-        await fetch(url, {
+        const response = await fetch(url, {
             method: 'PUT',
             body: body,
             headers: {
               'Content-Type': 'application/json'
             }
           });
+        if (response.status == 200){
+          console.log('Felhasználó szerkesztése sikeres!');
+        }else{
+          alert(response.error)
+        }
     }
 
     function onUpdate(event){

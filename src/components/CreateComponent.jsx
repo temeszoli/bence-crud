@@ -4,18 +4,24 @@ import UserForm from './UserForm';
 
 export default function CreateComponent({lastID}){
 
-    var body = {};
+    let body = {};
     const navigate = useNavigate();
 
     async function fetchPost(){
         const url = import.meta.env.VITE_BASE_URL;
-        await fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             body: body,
             headers: {
               'Content-Type': 'application/json'
             }
           });
+
+          if(response.status == 201){
+            console.log('Létrehozás sikeres!');
+          }else{
+            alert('Létrehozás sikertelen!');
+          }
     }
 
     function onCreate(event){

@@ -22,7 +22,7 @@ export default function UserForm({name, onSubmit}){
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicBirthDate">
           <Form.Label>Születési dátum:</Form.Label>
-          <Form.Control name='birth_date' type="datetime-local" />
+          <Form.Control name='birth_date' type="date" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check name='subscribed' type="checkbox" label="Iratkozz fel egy kattintással!" />
