@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useEffect, useRef } from "react";
 
-export default function UserForm({title, id, name, email, phone, subscribed, onSubmit}){
+export default function UserForm({title, id, name, email, phone, birth_date, subscribed, onSubmit}){
 
     const nameRef = useRef();
     const emailRef = useRef();
@@ -15,8 +15,9 @@ export default function UserForm({title, id, name, email, phone, subscribed, onS
       nameRef.current.value = name;
       emailRef.current.value = email;
       phoneRef.current.value = phone;
+      birthDateRef.current.value = birth_date;
       subscribedRef.current.checked = subscribed;
-    },[name, email, phone, subscribed])
+    },[name, email, phone, birth_date, subscribed])
     
     const handleSubmit = (e) => {
       e.preventDefault();

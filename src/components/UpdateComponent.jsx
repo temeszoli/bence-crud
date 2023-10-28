@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import UserForm from './UserForm';
 
 export default function UpdateComponent({refreshData}){
-  let body = {};
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -12,6 +12,7 @@ export default function UpdateComponent({refreshData}){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState(0);
+  const [birth_date, setBirth_date] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(()=>{
@@ -27,6 +28,7 @@ export default function UpdateComponent({refreshData}){
             setName(responseData[i].name);
             setEmail(responseData[i].email);
             setPhone(responseData[i].phone);
+            setBirth_date(responseData[i].birth_date);
             setSubscribed(responseData[i].subscribed)
           }
 
@@ -39,30 +41,29 @@ export default function UpdateComponent({refreshData}){
     fetchData();
   },[params.id]);
 
-    async function fetchPut(){
+    async function fetchPut(inputData){
         const url = import.meta.env.VITE_BASE_URL+'/'+params.id;
         const response = await fetch(url, {
             method: 'PUT',
-            body: body,
+            body: inputData,
             headers: {
               'Content-Type': 'application/json'
             }
           });
         if (response.status == 200){
-          refreshData();
           console.log('Felhasználó szerkesztése sikeres!');
         }else{
           alert(response.error)
         }
     }
 
-    function onUpdate(inputData){
-        body = inputData;      
-        fetchPut();
+    function onUpdate(inputData){    
+        fetchPut(inputData);
         navigate('/read');
+        refreshData();
     }
 
     return(
-        <UserForm title={title} id={params.id} name={name} email={email} phone={phone} subscribed={subscribed} onSubmit={onUpdate} refreshData={refreshData}/>
+        <UserForm title={title} id={params.id} name={name} email={email} phone={phone} birth_date={birth_date} subscribed={subscribed} onSubmit={onUpdate} refreshData={refreshData}/>
     );
 }
