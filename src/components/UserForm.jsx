@@ -30,7 +30,6 @@ export default function UserForm({title, id, name, email, phone, birth_date, sub
         subscribed: subscribedRef.current.checked
       });
       onSubmit(body);
-      //refreshData();
     }
     
     return(

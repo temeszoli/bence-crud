@@ -1,38 +1,21 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
 import UserForm from './UserForm';
+import { useData } from './DataContext';
 
-export default function CreateComponent({lastID, refreshData}){
+export default function CreateComponent(){
 
+    const { addNewData } = useData();
     const navigate = useNavigate();
 
-    async function fetchPost(inputData){
-        const url = import.meta.env.VITE_BASE_URL;
-        const response = await fetch(url, {
-            method: 'POST',
-            body: inputData,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-
-          if(response.status == 201){
-            console.log('Létrehozás sikeres!');
-          }else{
-            alert('Létrehozás sikertelen!');
-          }
-    }
-
-    function onCreate(inputData){      
-        fetchPost(inputData);
+    function onCreate(inputData){   
+        addNewData(inputData);   
         navigate('/read');
-        refreshData();
     }
 
     return(
         <UserForm 
         title={'Új személy hozzáadása'} 
-        id={lastID++} 
         name={''}
         email={''}
         phone={''} 

@@ -2,22 +2,14 @@
 /* eslint-disable react/prop-types */
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useData } from './DataContext';
 
-export default function ListItem({tableData, refreshData }){
+export default function ListItem({tableData}){
     const navigate = useNavigate();
+    const { removeData } = useData();
 
     async function handleClickDel(number){
-        const url = import.meta.env.VITE_BASE_URL+'/'+number;
-        const response = await fetch(url, {
-            method: 'DELETE'
-          });
-
-          if(response.status == 200){
-            refreshData();
-          }else{
-            alert('Törlés sikertelen!')
-          }
-          
+      removeData(number);
     }
 
     function handleUpdateClick(item) {

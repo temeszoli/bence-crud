@@ -1,37 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import ListItem from "./ListItem";
-import CreateComponent from "./CreateComponent";
-import UpdateComponent from "./UpdateComponent";
+import { useData } from "./DataContext";
 
 export default function ReadComponent(){
 
-    const [peopleData, setPeopleData] = useState([]);
-    const [lastID, setLastID] = useState(0);
+    const { data, getData } = useData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        fetchdata();
+        getData();
     }, []);
-
-    async function fetchdata(){
-        const url = import.meta.env.VITE_BASE_URL;
-        const response = await fetch(url);
-        if(response.status == 200){
-            const peopleObj = await response.json();
-            setPeopleData(peopleObj);
-            setLastID(peopleObj[peopleObj.length-1].id);
-            <CreateComponent lastID={lastID} data={peopleData} refreshData={refreshData}/>;
-            <UpdateComponent refreshData={refreshData}/>;
-        }else{
-            alert('Adatbekérés sikertelen!')
-        }
-    }
-
-    const refreshData = async () => {
-        await fetchdata();
-    };
 
     return(
         <div className="mx-5">
@@ -48,7 +28,7 @@ export default function ReadComponent(){
                         <th>Törlés</th>
                     </tr>
                 </thead>
-                <ListItem tableData={peopleData} lastID={lastID} refreshData={refreshData}/>
+                <ListItem tableData={data}/>
             </Table>
         </div>
     );

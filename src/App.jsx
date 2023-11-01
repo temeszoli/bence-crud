@@ -5,11 +5,13 @@ import CreateComponent from './components/CreateComponent'
 import ReadComponent from './components/ReadComponent'
 import UpdateComponent from './components/UpdateComponent'
 import Footer from './components/Footer'
+import { DataProvider } from './components/DataContext';
 
 import './input.scss';
 
 function App() {
   return (
+    <DataProvider>
     <div className='app'>
       <Header />
       <Routes>
@@ -20,6 +22,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </DataProvider>
   )
 }
 
