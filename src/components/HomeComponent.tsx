@@ -13,7 +13,8 @@ export default function HomeComponent(){
             <ListGroup.Item as="li" variant='primary'>CRUD műveletek megvalósítása komponensen belül</ListGroup.Item>
             <ListGroup.Item as="li" variant='primary'>Első github pages deploy</ListGroup.Item>
             <ListGroup.Item as="li" variant='primary'>Dependency Injection megvalósítása React Context API-al</ListGroup.Item>
-            <ListGroup.Item as="li" variant='danger'>?</ListGroup.Item>
+            <ListGroup.Item as="li" variant='warning'>Kód refaktorálása typescript kóddá</ListGroup.Item>
+            <ListGroup.Item as="li" variant='danger'>Solid elvek alkalmazása, clean kód</ListGroup.Item>
             </ListGroup>
             </div>
         </div>

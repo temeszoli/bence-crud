@@ -1,6 +1,8 @@
-const fetchData = async () => {
-    const url = import.meta.env.VITE_BASE_URL;
-    const response = await fetch(url);
+const baseURL = import.meta.env.VITE_BASE_URL as string;
+
+const fetchData = async (): Promise<any> => {
+    const url: string = baseURL;
+    const response: Response = await fetch(url);
     if(response.status == 200){
         const data = await response.json();
         return data;
@@ -9,9 +11,9 @@ const fetchData = async () => {
     }
 };
 
-const addData = async (newData) => {
-    const url = import.meta.env.VITE_BASE_URL;
-    const response = await fetch(url, {
+const addData = async (newData: any): Promise<any> => {
+    const url: string = baseURL;
+    const response: Response = await fetch(url, {
         method: 'POST',
         body: newData,
         headers: {
@@ -28,17 +30,17 @@ const addData = async (newData) => {
     }  
 };
 
-const deleteData = async (id) => {
-    const url = import.meta.env.VITE_BASE_URL+`/${id}`;
-    const response = await fetch(url, {
+const deleteData = async (id: string): Promise<boolean> => {
+    const url: string = baseURL+`/${id}`;
+    const response: Response = await fetch(url, {
         method: 'DELETE'
     });
     return response.status === 200;
 };
 
-const updateData = async (id, updatedData) => {
-    const url = import.meta.env.VITE_BASE_URL+`/${id}`;
-    const response = await fetch(url, {
+const updateData = async (id: string, updatedData: any) => {
+    const url: string = baseURL+`/${id}`;
+    const response: Response = await fetch(url, {
         method: 'PUT',
         body: updatedData,
         headers: {
@@ -49,7 +51,7 @@ const updateData = async (id, updatedData) => {
         const data = await response.json();
         return data;
     }else{
-        alert(response.error)
+        alert('Adatmódosítás sikertelen!')
     }  
   };
 
